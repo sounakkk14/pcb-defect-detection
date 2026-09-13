@@ -15,7 +15,7 @@ Automated optical inspection (AOI) for printed circuit boards. The model finds a
 
 ## Highlights
 
-- **98.8% mAP@50** on a held-out test set of 1,068 images (2,158 defect instances)
+- **98.8% mAP@50** on a held-out test set of 1,068 images (2,158 defect instances) from the [Kaggle PCB Defect dataset](https://www.kaggle.com/datasets/norbertelter/pcb-defect-dataset)
 - **Six defect classes**: mouse bite, spur, missing hole, short, open circuit, spurious copper
 - **Lightweight model**: YOLO26n, about 5 MB of weights, fast enough for real-time inspection
 - **Full pipeline**: dataset validation and repair, training, evaluation with per-class reports, and batch inference with CSV export
@@ -128,9 +128,18 @@ pip install -r requirements.txt
 
 > For GPU training, install the CUDA build of PyTorch that matches your driver first. See [pytorch.org](https://pytorch.org/get-started/locally/).
 
-### 2. Prepare the dataset
+### 2. Download the dataset
 
-Put the dataset in YOLO format at the project root:
+This project uses the [**PCB Defect dataset**](https://www.kaggle.com/datasets/norbertelter/pcb-defect-dataset) on Kaggle by Norbert Elter. It has 10,668 augmented PCB images with YOLO annotations, derived from Peking University's PKU-Market-PCB dataset.
+
+Download it from the Kaggle page, or use the [Kaggle CLI](https://github.com/Kaggle/kaggle-api):
+
+```bash
+pip install kaggle
+kaggle datasets download -d norbertelter/pcb-defect-dataset --unzip -p pcb-defect-dataset
+```
+
+Arrange it in YOLO format at the project root:
 
 ```
 pcb-defect-dataset/
@@ -245,7 +254,9 @@ Environment: Python 3.11, Ultralytics 8.4, PyTorch 2.11 (CUDA 12.8), OpenCV 5.0.
 ## Acknowledgements
 
 - [Ultralytics YOLO](https://github.com/ultralytics/ultralytics) for the detection framework
-- The PCB defect images follow the defect taxonomy of the [PKU-Market-PCB](https://robotics.pkusz.edu.cn/resources/dataset/) dataset from Peking University's Open Lab on Human Robot Interaction
+- [PCB Defect dataset](https://www.kaggle.com/datasets/norbertelter/pcb-defect-dataset) on Kaggle by Norbert Elter, used for training and evaluation
+- The original [PKU-Market-PCB](https://robotics.pkusz.edu.cn/resources/dataset/) dataset from Peking University's Open Lab on Human Robot Interaction
+- R. Ding, L. Dai, G. Li, and H. Liu, "TDD-net: a tiny defect detection network for printed circuit boards," *CAAI Transactions on Intelligence Technology*, vol. 4, no. 2, pp. 110–116, 2019
 
 ---
 
