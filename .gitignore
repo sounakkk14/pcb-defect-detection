@@ -1,0 +1,15 @@
+# Training outputs and model weights (large, reproducible)
+runs/
+*.pt
+*.onnx
+
+# Dataset (too large for git)
+pcb-defect-dataset/
+*.cache
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
